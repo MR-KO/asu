@@ -6,7 +6,7 @@ services:
       dockerfile: Containerfile
     restart: unless-stopped
     command: uv run uvicorn --host 0.0.0.0 asu.main:app
-    env_file: .env
+    env_file: stack.env
     environment:
       REDIS_URL: "redis://redis:6379/0"
     volumes:
@@ -24,7 +24,7 @@ services:
       dockerfile: Containerfile
     restart: unless-stopped
     command: uv run rqworker --logging_level INFO
-    env_file: .env
+    env_file: stack.env
     environment:
       REDIS_URL: "redis://redis:6379/0"
     volumes:
