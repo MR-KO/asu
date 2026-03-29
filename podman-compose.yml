@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Containerfile
-    restart: unless-stopped
+    restart: always
     command: uv run uvicorn --host 0.0.0.0 asu.main:app
     env_file: stack.env
     environment:
@@ -22,7 +22,7 @@ services:
     build:
       context: .
       dockerfile: Containerfile
-    restart: unless-stopped
+    restart: always
     command: uv run rqworker --logging_level INFO
     env_file: stack.env
     environment:
@@ -35,7 +35,7 @@ services:
 
   redis:
     image: "docker.io/redis/redis-stack-server"
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./redis-data:/data/:rw
     ports:
